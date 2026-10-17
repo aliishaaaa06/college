@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Hackathon 2026 - Event Details</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+
+    <header>
+
+        <h1>College Event Portal</h1>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="index.html">Events</a>
+        </nav>
+
+    </header>
+
+
+    <!-- Event Details -->
+
+    <main>
+
+        <section class="event-details">
+
+            <h2>Tech Workshop</h2>
+
+<p class="event-info">📅 20 October 2026</p>
+<p class="event-info">📍 Computer Lab</p>
+<p class="event-info">⏰ 11:00 AM - 2:00 PM</p>
+
+<h3>About the Event</h3>
+
+<p>
+    This workshop introduces students to modern
+    technologies through practical demonstrations
+    and hands-on activities.
+</p>
+
+
+            <h3>Event Rules</h3>
+
+            <ul>
+                <li>Students must carry their college ID.</li>
+                <li>Participants can form teams of up to 4 members.</li>
+                <li>Participants must register before the deadline.</li>
+                <li>All participants must follow college guidelines.</li>
+            </ul>
+
+
+            <h3>Registration Fee</h3>
+
+            <p>Free</p>
+
+        </section>
+
+
+        <!-- Registration -->
+
+        <section class="registration">
+
+            <form id="registrationForm" data-event="workshop">
+
+                <label for="name">Full Name</label>
+
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Enter your name"
+                    required
+                >
+
+
+                
+
+
+                <label for="branch">Branch</label>
+
+                <select id="branch" required>
+
+                    <option value="">Select your branch</option>
+
+                    <option value="CSE">Computer Science</option>
+
+                    <option value="IT">Information Technology</option>
+
+                    <option value="ECE">Electronics & Communication</option>
+
+                    <option value="ME">Mechanical</option>
+
+                    <option value="Other">Other</option>
+
+                </select>
+
+
+                <label for="year">Year</label>
+
+                <select id="year" required>
+
+                    <option value="">Select year</option>
+
+                    <option value="1st">1st Year</option>
+
+                    <option value="2nd">2nd Year</option>
+
+                    <option value="3rd">3rd Year</option>
+
+                    <option value="4th">4th Year</option>
+
+                </select>
+
+
+                <label for="email">Email</label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter your email"
+                    required
+                >
+
+
+                <label for="phone">Phone Number</label>
+
+                <input
+                    type="tel"
+                    id="phone"
+                    placeholder="Enter your phone number"
+                    required
+                >
+
+
+                <button type="submit">
+                    Register Now
+                </button>
+
+            </form>
+<a href="participants.html?event=workshop">
+    <button type="button">
+        View Participants
+    </button>
+</a>
+
+            <p id="successMessage"></p>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <p>© 2026 College Event Portal</p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

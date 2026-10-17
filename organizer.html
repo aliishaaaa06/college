@@ -1,0 +1,177 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Organizer Panel</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- Header -->
+
+    <header>
+
+        <h1>College Event Portal</h1>
+
+        <nav>
+
+            <a href="index.html">Home</a>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- Organizer Panel -->
+
+    <main>
+
+        <section class="registration">
+
+            <h2>Organizer Panel</h2>
+
+            <p>Add a new college event</p>
+
+
+            <form id="eventForm">
+
+
+                <!-- Event Name -->
+
+                <label for="eventName">
+                    Event Name
+                </label>
+
+                <input
+                    type="text"
+                    id="eventName"
+                    placeholder="Enter event name"
+                    required
+                >
+
+
+                <!-- Date -->
+
+                <label for="eventDate">
+                    Event Date
+                </label>
+
+                <input
+                    type="date"
+                    id="eventDate"
+                    required
+                >
+
+
+                <!-- Time -->
+
+                <label for="eventTime">
+                    Event Time
+                </label>
+
+                <input
+                    type="text"
+                    id="eventTime"
+                    placeholder="Example: 10:00 AM - 2:00 PM"
+                    required
+                >
+
+
+                <!-- Venue -->
+
+                <label for="eventVenue">
+                    Venue
+                </label>
+
+                <input
+                    type="text"
+                    id="eventVenue"
+                    placeholder="Enter venue"
+                    required
+                >
+
+
+                <!-- Description -->
+
+                <label for="eventDescription">
+                    Description
+                </label>
+
+                <textarea
+                    id="eventDescription"
+                    placeholder="Enter event description"
+                    rows="5"
+                    required
+                ></textarea>
+
+
+                <!-- Registration Fee -->
+
+                <label for="eventFee">
+                    Registration Fee
+                </label>
+
+                <input
+                    type="text"
+                    id="eventFee"
+                    placeholder="Example: Free or ₹100"
+                    required
+                >
+
+
+                <!-- Submit -->
+
+                <button type="submit">
+                    Add Event
+                </button>
+
+
+            </form>
+
+
+            <!-- Success Message -->
+
+            <p id="eventSuccessMessage"></p>
+
+
+        </section>
+
+    </main>
+
+<section class="events">
+
+    <h2>Manage Events</h2>
+
+    <div id="organizerEvents">
+        <!-- Added events will appear here -->
+    </div>
+
+</section>
+
+    <!-- Footer -->
+
+    <footer>
+
+        <p>© 2026 College Event Portal</p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

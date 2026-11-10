@@ -1,15 +1,4 @@
 // ===============================
-// EVENT NAMES FOR OLD EVENT PAGES
-// ===============================
-
-const oldEventNames = {
-    hackathon: "Hackathon 2026",
-    cultural: "Cultural Fest",
-    workshop: "Tech Workshop"
-};
-
-
-// ===============================
 // DEFAULT EVENTS
 // ===============================
 
@@ -65,13 +54,6 @@ if (!localStorage.getItem("collegeEvents")) {
 // ===============================
 // ORGANIZER LOGIN
 // ===============================
-// ===============================
-// ORGANIZER LOGIN
-// ===============================
-
-// ===============================
-// ORGANIZER LOGIN
-// ===============================
 
 const organizerLoginForm =
     document.getElementById("organizerLoginForm");
@@ -93,16 +75,13 @@ if (organizerLoginForm) {
 
             const correctPasskey = "1234";
 
-
             if (passkey === correctPasskey) {
 
-                // Save organizer login status
-                localStorage.setItem(
-                    "organizerLoggedIn",
-                    "true"
-                );
+                sessionStorage.setItem(
+    "organizerLoggedIn",
+    "true"
+);
 
-                // Open organizer panel
                 window.location.href =
                     "organizer.html";
 
@@ -117,6 +96,7 @@ if (organizerLoginForm) {
     );
 
 }
+
 
 // ===============================
 // ORGANIZER - ADD EVENT
@@ -136,7 +116,6 @@ if (eventForm) {
         function(event) {
 
             event.preventDefault();
-
 
             const newEvent = {
 
@@ -172,7 +151,6 @@ if (eventForm) {
 
             };
 
-
             let events =
                 JSON.parse(
                     localStorage.getItem(
@@ -180,19 +158,15 @@ if (eventForm) {
                     )
                 ) || [];
 
-
             events.push(newEvent);
-
 
             localStorage.setItem(
                 "collegeEvents",
                 JSON.stringify(events)
             );
 
-
             eventSuccessMessage.textContent =
                 "Event added successfully!";
-
 
             eventForm.reset();
 
@@ -219,7 +193,6 @@ if (dynamicEvents) {
             )
         ) || [];
 
-
     if (events.length === 0) {
 
         dynamicEvents.innerHTML =
@@ -227,45 +200,29 @@ if (dynamicEvents) {
 
     }
 
-
     events.forEach(
         function(event, index) {
 
             const eventCard =
                 document.createElement("div");
 
-
             eventCard.className =
                 "event-card";
 
-
             eventCard.innerHTML = `
 
-                <h3>
-                    ${event.name}
-                </h3>
+                <h3>${event.name}</h3>
+
+                <p>📅 ${event.date}</p>
+
+                <p>⏰ ${event.time}</p>
+
+                <p>📍 ${event.venue}</p>
+
+                <p>${event.description}</p>
 
                 <p>
-                    📅 ${event.date}
-                </p>
-
-                <p>
-                    ⏰ ${event.time}
-                </p>
-
-                <p>
-                    📍 ${event.venue}
-                </p>
-
-                <p>
-                    ${event.description}
-                </p>
-
-                <p>
-                    <strong>
-                        Registration Fee:
-                    </strong>
-
+                    <strong>Registration Fee:</strong>
                     ${event.fee}
                 </p>
 
@@ -279,10 +236,7 @@ if (dynamicEvents) {
 
             `;
 
-
-            dynamicEvents.appendChild(
-                eventCard
-            );
+            dynamicEvents.appendChild(eventCard);
 
         }
     );
@@ -297,8 +251,7 @@ if (dynamicEvents) {
 function openRegistration(index) {
 
     window.location.href =
-        "dynamic-registration.html?event="
-        + index;
+        "dynamic-registration.html?event=" + index;
 
 }
 
@@ -320,10 +273,8 @@ if (dynamicRegistrationForm) {
             window.location.search
         );
 
-
     const eventIndex =
         urlParams.get("event");
-
 
     const events =
         JSON.parse(
@@ -331,7 +282,6 @@ if (dynamicRegistrationForm) {
                 "collegeEvents"
             )
         ) || [];
-
 
     if (
         eventIndex === null ||
@@ -343,7 +293,6 @@ if (dynamicRegistrationForm) {
         ).textContent =
             "Event not found";
 
-
         dynamicRegistrationForm.style.display =
             "none";
 
@@ -353,37 +302,32 @@ if (dynamicRegistrationForm) {
             events[eventIndex];
 
 
-        // Display event information
+        // DISPLAY EVENT INFORMATION
 
         document.getElementById(
             "eventName"
         ).textContent =
             currentEvent.name;
 
-
         document.getElementById(
             "eventDate"
         ).textContent =
             "📅 " + currentEvent.date;
-
 
         document.getElementById(
             "eventTime"
         ).textContent =
             "⏰ " + currentEvent.time;
 
-
         document.getElementById(
             "eventVenue"
         ).textContent =
             "📍 " + currentEvent.venue;
 
-
         document.getElementById(
             "eventDescription"
         ).textContent =
             currentEvent.description;
-
 
         document.getElementById(
             "eventFee"
@@ -391,14 +335,13 @@ if (dynamicRegistrationForm) {
             currentEvent.fee;
 
 
-        // Unique participant storage
+        // UNIQUE PARTICIPANT STORAGE
 
         const participantKey =
-            "dynamicEventParticipants_"
-            + eventIndex;
+            "dynamicEventParticipants_" + eventIndex;
 
 
-        // Registration
+        // REGISTRATION
 
         dynamicRegistrationForm.addEventListener(
             "submit",
@@ -406,36 +349,30 @@ if (dynamicRegistrationForm) {
 
                 event.preventDefault();
 
-
                 const name =
                     document.getElementById(
                         "dynamicName"
                     ).value;
-
 
                 const branch =
                     document.getElementById(
                         "dynamicBranch"
                     ).value;
 
-
                 const year =
                     document.getElementById(
                         "dynamicYear"
                     ).value;
-
 
                 const email =
                     document.getElementById(
                         "dynamicEmail"
                     ).value;
 
-
                 const phone =
                     document.getElementById(
                         "dynamicPhone"
                     ).value;
-
 
                 const registeredAt =
                     new Date().toLocaleTimeString(
@@ -446,23 +383,16 @@ if (dynamicRegistrationForm) {
                         }
                     );
 
-
                 const participant = {
 
                     name: name,
-
                     branch: branch,
-
                     year: year,
-
                     email: email,
-
                     phone: phone,
-
                     registeredAt: registeredAt
 
                 };
-
 
                 let participants =
                     JSON.parse(
@@ -471,21 +401,15 @@ if (dynamicRegistrationForm) {
                         )
                     ) || [];
 
-
-                participants.push(
-                    participant
-                );
-
+                participants.push(participant);
 
                 localStorage.setItem(
                     participantKey,
-                    JSON.stringify(
-                        participants
-                    )
+                    JSON.stringify(participants)
                 );
 
 
-                // Success message
+                // SUCCESS MESSAGE
 
                 document.getElementById(
                     "dynamicSuccessMessage"
@@ -494,24 +418,22 @@ if (dynamicRegistrationForm) {
                     + name + "!";
 
 
-                // Hide form
+                // HIDE REGISTRATION FORM
 
                 dynamicRegistrationForm.style.display =
                     "none";
 
 
-                // Show participants button
+                // SHOW PARTICIPANTS BUTTON
 
                 const viewButton =
                     document.getElementById(
                         "dynamicViewParticipants"
                     );
 
-
                 viewButton.href =
                     "participants.html?eventIndex="
                     + eventIndex;
-
 
                 viewButton.style.display =
                     "inline-block";
@@ -528,11 +450,12 @@ if (dynamicRegistrationForm) {
 // DISPLAY DYNAMIC PARTICIPANTS
 // ===============================
 
-const participantList =
-    document.getElementById(
-        "participantList"
-    );
+// ===============================
+// DISPLAY DYNAMIC PARTICIPANTS
+// ===============================
 
+const participantList =
+    document.getElementById("participantList");
 
 if (
     participantList &&
@@ -546,55 +469,44 @@ if (
             window.location.search
         );
 
-
     const eventIndex =
         urlParams.get("eventIndex");
 
-
     const events =
         JSON.parse(
-            localStorage.getItem(
-                "collegeEvents"
-            )
+            localStorage.getItem("collegeEvents")
         ) || [];
 
+    // Check whether this is the organizer's view
+    const isOrganizerView =
+        urlParams.get("view") === "organizer" &&
+        sessionStorage.getItem("organizerLoggedIn") === "true";
 
     if (!events[eventIndex]) {
 
         document.getElementById(
             "eventTitle"
-        ).textContent =
-            "Event not found";
-
+        ).textContent = "Event not found";
 
         participantList.innerHTML =
             "<p>Event does not exist.</p>";
 
     } else {
 
-        const currentEvent =
-            events[eventIndex];
-
+        const currentEvent = events[eventIndex];
 
         document.getElementById(
             "eventTitle"
         ).textContent =
-            currentEvent.name
-            + " Participants";
-
+            currentEvent.name + " Participants";
 
         const participantKey =
-            "dynamicEventParticipants_"
-            + eventIndex;
-
+            "dynamicEventParticipants_" + eventIndex;
 
         const participants =
             JSON.parse(
-                localStorage.getItem(
-                    participantKey
-                )
+                localStorage.getItem(participantKey)
             ) || [];
-
 
         if (participants.length === 0) {
 
@@ -607,60 +519,35 @@ if (
                 function(participant, index) {
 
                     const participantCard =
-                        document.createElement(
-                            "div"
-                        );
-
+                        document.createElement("div");
 
                     participantCard.className =
                         "participant-card";
 
-
                     participantCard.innerHTML = `
 
                         <h3>
-                            ${index + 1}.
-                            ${participant.name}
+                            ${index + 1}. ${participant.name}
                         </h3>
 
                         <p>
-                            Branch:
-                            ${participant.branch}
+                            Registered at:
+                            ${participant.registeredAt}
                         </p>
 
-                        <p>
-                            Year:
-                            ${participant.year}
-                        </p>
+                        ${isOrganizerView ? `
 
-                        <p>
-                            Email:
-                            ${participant.email}
-                        </p>
+                            <button
+                                type="button"
+                                onclick="deleteParticipant(${eventIndex}, ${index})">
 
-                        <p>
-                            Phone:
-                            ${participant.phone}
-                        </p>
+                                Delete Participant
 
-                        <p>
-                          <p>
-    Registered at:
-    ${participant.registeredAt}
-</p>
+                            </button>
 
-${localStorage.getItem("organizerLoggedIn") === "true" ? `
-    <button
-        type="button"
-        onclick="deleteParticipant(${eventIndex}, ${index})">
+                        ` : ""}
 
-        Delete Participant
-
-    </button>
-` : ""}
-
-`;
-
+                    `;
 
                     participantList.appendChild(
                         participantCard
@@ -675,120 +562,6 @@ ${localStorage.getItem("organizerLoggedIn") === "true" ? `
 
 }
 
-
-// ===============================
-// ORGANIZER - MANAGE EVENTS
-// ===============================
-
-const organizerEvents =
-    document.getElementById(
-        "organizerEvents"
-    );
-
-
-if (organizerEvents) {
-
-    function displayOrganizerEvents() {
-
-        organizerEvents.innerHTML = "";
-
-
-        const events =
-            JSON.parse(
-                localStorage.getItem(
-                    "collegeEvents"
-                )
-            ) || [];
-
-
-        if (events.length === 0) {
-
-            organizerEvents.innerHTML =
-                "<p>No events added yet.</p>";
-
-            return;
-
-        }
-
-
-        events.forEach(
-            function(event, index) {
-
-                const eventCard =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                eventCard.className =
-                    "event-card";
-
-
-                eventCard.innerHTML = `
-
-                    <h3>
-                        ${event.name}
-                    </h3>
-
-                    <p>
-                        📅 ${event.date}
-                    </p>
-
-                    <p>
-                        ⏰ ${event.time}
-                    </p>
-
-                    <p>
-                        📍 ${event.venue}
-                    </p>
-
-                    <p>
-                        ${event.description}
-                    </p>
-
-                    <p>
-                        <strong>
-                            Registration Fee:
-                        </strong>
-
-                        ${event.fee}
-                    </p>
-
-                   <a
-    href="participants.html?eventIndex=${index}"
-    style="text-decoration: none;">
-
-    <button type="button">
-        View Participants
-    </button>
-
-</a>
-
-<button
-    type="button"
-    onclick="deleteEvent(${index})">
-
-    Delete Event
-
-</button>
-                `;
-
-
-                organizerEvents.appendChild(
-                    eventCard
-                );
-
-            }
-        );
-
-    }
-
-
-    displayOrganizerEvents();
-
-}
-
-
 // ===============================
 // DELETE EVENT
 // ===============================
@@ -802,141 +575,49 @@ function deleteEvent(index) {
             )
         ) || [];
 
-
-    events.splice(
-        index,
-        1
-    );
-
+    events.splice(index, 1);
 
     localStorage.setItem(
         "collegeEvents",
         JSON.stringify(events)
     );
 
-
     location.reload();
 
 }
 
+// ORGANIZER - MANAGE EVENTS
 
-// ===============================
-// OLD EVENT PAGE REGISTRATION
-// ===============================
-// This keeps your old
-// hackathon.html,
-// cultural.html and
-// workshop.html pages working.
+const organizerEvents = document.getElementById("organizerEvents");
 
-const oldForm =
-    document.getElementById(
-        "registrationForm"
-    );
+if (organizerEvents) {
+    function displayOrganizerEvents() {
+        const events = JSON.parse(
+            localStorage.getItem("collegeEvents")
+        ) || [];
 
+        organizerEvents.innerHTML = "";
 
-if (oldForm) {
+        events.forEach((event, index) => {
+            organizerEvents.innerHTML += `
+                <div class="event-card">
+                    <h3>${event.name}</h3>
+                    <p>${event.date}</p>
+                    <p>${event.location}</p>
 
-    oldForm.addEventListener(
-        "submit",
-        function(event) {
+                    <a href="participants.html?eventIndex=${index}&view=organizer">
+                        <button>View Participants</button>
+                    </a>
 
-            event.preventDefault();
+                    <button onclick="deleteEvent(${index})">
+                        Delete Event
+                    </button>
+                </div>
+            `;
+        });
+    }
 
-
-            const name =
-                document.getElementById(
-                    "name"
-                ).value;
-
-
-            const registeredAt =
-                new Date().toLocaleTimeString(
-                    [],
-                    {
-                        hour: "2-digit",
-                        minute: "2-digit"
-                    }
-                );
-
-
-            const currentEvent =
-                oldForm.getAttribute(
-                    "data-event"
-                );
-
-
-            const storageKey =
-                currentEvent
-                + "Participants";
-
-
-            const participant = {
-
-                name: name,
-
-                registeredAt:
-                    registeredAt
-
-            };
-
-
-            let participants =
-                JSON.parse(
-                    localStorage.getItem(
-                        storageKey
-                    )
-                ) || [];
-
-
-            participants.push(
-                participant
-            );
-
-
-            localStorage.setItem(
-                storageKey,
-                JSON.stringify(
-                    participants
-                )
-            );
-
-
-            const successMessage =
-                document.getElementById(
-                    "successMessage"
-                );
-
-
-            if (successMessage) {
-
-               
-                successMessage.textContent =
-                    "Registration successful! Welcome, "
-                    + name + "!";
-
-            }
-
-
-            oldForm.style.display =
-                "none";
-
-
-            const viewParticipants =
-                document.getElementById(
-                    "viewParticipants"
-                );
-
-
-            if (viewParticipants) {
-
-                viewParticipants.style.display =
-                    "inline-block";
-
-            }
-
-        }
-    );
-
+    displayOrganizerEvents();
 }
 // ===============================
 // DELETE PARTICIPANT
@@ -947,28 +628,27 @@ function deleteParticipant(eventIndex, participantIndex) {
     const participantKey =
         "dynamicEventParticipants_" + eventIndex;
 
-
     let participants =
         JSON.parse(
             localStorage.getItem(participantKey)
         ) || [];
 
+    // REMOVE SELECTED PARTICIPANT
 
-    // Remove selected participant
     participants.splice(
         participantIndex,
         1
     );
 
+    // SAVE UPDATED PARTICIPANTS
 
-    // Save updated participants
     localStorage.setItem(
         participantKey,
         JSON.stringify(participants)
     );
 
+    // REFRESH PARTICIPANT PAGE
 
-    // Refresh participant page
     location.reload();
 
 }
